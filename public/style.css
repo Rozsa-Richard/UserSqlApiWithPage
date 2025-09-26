@@ -1,0 +1,79 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #F3F3F3;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#Center {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#login, #singup {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50vh;
+    height: 30vh;
+    background-color: #D9EAD3;
+    transition: background 0.3s ease;
+    border: #145a2c solid 2px;
+}
+
+h3 {
+    margin-top: 0;
+    color: #217346;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #217346;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #145a2c;
+}
+
+p {
+    color: #333;
+}
+.formthing {
+    color: white;
+}
+.textbutton {
+    background-color: #D9EAD3;
+    margin-top: 30px;
+    margin-left: 20px;
+    color: black;
+}
+.textbutton:hover {
+    background-color: #a1b899;
+}
+#alertText {
+    border-radius: 3px;
+    background-color:  #D9EAD3;
+    color: black;
+}
