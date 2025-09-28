@@ -17,7 +17,24 @@ async function login() {
         alert("Az email nem jó formátumba adtad meg");
     }
     else {
-        alert("Sikeres bejelentkezés");
+        try {
+            const response = await fetch("http://localhost:3000/singin", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                email: email,
+                password: password
+                })
+            });
+            const data = response.json();
+            console.log(data);
+            data.then(x => {alert(x.message)})
+        }
+        catch(error){
+            console.log(error);
+        }
     }
 }
 
@@ -47,10 +64,8 @@ async function singup() {
                 password: password1
                 })
             });
-            console.log(response);
             const data = response.json();
-            console.log(data);
-            alert(data[2].message);
+            data.then(x => {alert(x.message)})
         }
         catch(error){
             console.log(error);

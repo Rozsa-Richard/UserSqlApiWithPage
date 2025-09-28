@@ -10,26 +10,36 @@ app.use(express.static("public"));
 
 app.post("/register", (req,res) =>{
     const {email, password} = req.body;
-    if (!email, !password) {
-        return res.status(400).json({message: "Missing some data"});
-    }
-    db.saveUser(email,password);
-    res.status(200).json({message: "User created"});
-});
-
-app.post("/singIn", (req, res) => {
-    const {email, password} = req.body;
-    if (!email, !password) {
+    if (!email || !password) {
         return res.status(400).json({message: "Missing some data"});
     }
     const user = db.getUserByMail(email);
-    if (user.password == password){
-        res.status(200).json({message:"Sikeres bejelentkezés!"});
+    if (!user){
+        db.saveUser(email,password);
+        return res.status(200).json({message: "User created"});
     }
-    else{
-        res.status(400).json({message:"Email vagy jelszó nem egyezik!"})
+    return res.status(400).json({message:"Ez az email már foglalt."});
+});
+
+app.post("/singin", (req, res) => {
+    try {
+        const {email, password} = req.body;
+    if (!email || !password) {
+        return res.status(400).json({message: "Missing some data"});
     }
-}),
+    const user = db.getUserByMail(email);
+    if (!user){
+        return res.status(400).json({message:"Email vagy jelszó nem egyezik!1"});
+    }
+    if (user.password === password) {
+      return res.status(200).json({ message: "Sikeres bejelentkezés!" });
+    }
+    return res.status(400).json({message:"Email vagy jelszó nem egyezik!"});
+    }
+    catch (error){
+        console.log(error)
+    }
+});
 
 app.listen(PORT, ()=> {
     console.log("http://localhost:3000")
